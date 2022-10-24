@@ -2,21 +2,32 @@
  * @param {string} word
  * @return {number}
  */
-var isVowel = function(c) {
-    return (c === 'a' || c === 'e' || c === 'i' || c === 'o' || c === 'u');
-}
-
 var countVowelSubstrings = function(word) {
-    let vowelMap = new Map();
-    let total = 0;
-    let totalLen = word.length - 1;
-    for(let i = 0 ; i <= totalLen; i++){
-        vowelMap.clear();
-        for(let j = i; j <= totalLen && isVowel(word[j]); j++){
-            vowelMap.set(word[j], (vowelMap.get(word[j]) ?? 0) + 1);
-            if(vowelMap.size == 5)
-                total++;
+    
+    let s = 0;
+    let e = 5;
+    const result = [];
+    const regex = /[aeiou]/g
+    const a = /a/
+    const ee = /e/
+    const i = /i/
+    const o = /o/
+    const u = /u/
+    
+    while(s+4 <= word.length){
+       const newStr = word.substring(s,e) 
+       const temp = newStr.match(regex)?.join("")
+
+       if(newStr.length === temp?.length && a.test(newStr) && ee.test(newStr) && i.test(newStr) && o.test(newStr) && u.test(newStr)){
+            result.push(newStr);
+            e++;
+        }else{
+            e++;
         }
+        if(e > word.length){
+            s++; e = s+5;
+        }
+        // console.log(newStr)
     }
-    return total;
+    return result.length
 };
