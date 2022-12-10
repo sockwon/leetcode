@@ -1,0 +1,45 @@
+/**
+ * @param {number} num
+ * @return {string}
+ */
+var toHex = function(num) {
+    let target = num;
+
+    //정해진 횟수 없이 반복한다.
+    //16진수로 변환 작업을 하는 함수
+    const arr = {"10": 'a', "11":'b', "12":'c', "13":'d', "14":'e', "15":'f'}
+    const resultArr = []
+    const Max = 4294967296
+
+    if(target < 0){
+        target = Max+target;
+    }
+    const helper = (target)=>{
+        
+        const value = Math.floor(target/16)
+        const rest = target%16
+
+        if(arr[`${rest}`]){
+            resultArr.unshift(arr[`${rest}`])
+        } else {
+            resultArr.unshift(`${rest}`)
+        }
+
+        if(value === 0){
+            return;
+        }
+
+        if(value < 16 && value !==0){
+            if(9<value){
+                return resultArr.unshift(arr[`${value}`])
+            } else {
+                return resultArr.unshift(`${value}`)
+            }
+        } else {
+            return helper(value)
+        }
+        
+    }
+    helper(target)
+    return resultArr.join("")
+};
