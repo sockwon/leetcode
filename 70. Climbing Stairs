@@ -1,0 +1,14 @@
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var climbStairs = function(n) {
+    const limit = n
+    if(limit <=3) return limit
+    const start = [2,3]
+    for(let i=0; i<limit-3; i++){
+        const next = start[i]+start[i+1]
+        start.push(next)
+    }
+    return start.pop()
+};
