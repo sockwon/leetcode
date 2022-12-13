@@ -1,0 +1,22 @@
+/**
+ * @param {number[][]} matrix
+ * @return {number}
+ */
+var minFallingPathSum = function(matrix) {
+
+    const vertical = matrix.length
+    const width = matrix[0].length
+
+    for(let i=1; i<vertical; i++){
+        for(let j=0; j<width; j++){
+           if(j === width-1){
+               matrix[i][j] = Math.min(matrix[i-1][j] , matrix[i-1][j-1]) +  matrix[i][j] 
+           }else if(j !== 0){
+                matrix[i][j] = Math.min(matrix[i-1][j], matrix[i-1][j-1],matrix[i-1][j+1])+ matrix[i][j]
+           }else{
+               matrix[i][j]=Math.min(matrix[i-1][j],matrix[i-1][j+1])+matrix[i][j]
+           }
+        }
+    }
+    return Math.min(...matrix[vertical-1])  
+};
