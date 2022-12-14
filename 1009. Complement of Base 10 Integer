@@ -1,0 +1,26 @@
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var bitwiseComplement = function(n) {
+    //이진법으로 전환
+    //0과 1의 반전
+    //십진법으로 전환
+    const helper = (num)=>{
+        if(num<2) return String(num);
+        const result = num%2
+        const next = Math.floor(num/2)
+        return helper(next) + String(result)
+    }
+   const binary = helper(n)
+   const complement = binary.split("").reduce((acc, val)=>{
+       if(val === "1") acc.push("0")
+       if(val === "0") acc.push("1")
+       return acc
+   }, [])
+   const result = complement.reverse().reduce((acc,val,inx)=>{
+       acc = (2**(inx))*val +acc
+       return acc
+   }, 0)
+   return result 
+};
