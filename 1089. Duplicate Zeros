@@ -1,0 +1,18 @@
+/**
+ * @param {number[]} arr
+ * @return {void} Do not return anything, modify arr in-place instead.
+ */
+var duplicateZeros = function(arr) {
+    let i=0;
+    const len = arr.length
+
+    while(arr.length-1 !== i){
+        if(arr[i] === 0){
+            arr.splice(i,0,0)
+            i++;
+        }
+        i++;
+    }
+
+    while(arr.length > len) arr.pop()
+};
