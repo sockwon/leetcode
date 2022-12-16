@@ -1,0 +1,21 @@
+/**
+ * @param {number} low
+ * @param {number} high
+ * @return {number}
+ */
+var countOdds = function(low, high) {
+    //low 에서 시작하여 1씩 커진다.
+    //각 숫자가 odd 인지 판별한다.
+    //결과값을 집계한다
+    //high 까지.
+    let result=0
+
+    for(let i=low; i<=high; i++){
+        if(i%2 === 1){
+            result++;
+        }
+    }
+
+    return result;
+
+};
