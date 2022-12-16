@@ -1,0 +1,15 @@
+/**
+ * @param {number[]} salary
+ * @return {number}
+ */
+var average = function(salary) {
+    const max = Math.max(...salary)
+    const min = Math.min(...salary)
+
+    const sum = salary.reduce((acc,val)=>{
+        return acc+=val
+    },0)
+    
+    const average = (sum-max-min)/(salary.length-2)
+    return average.toFixed(5);
+};
