@@ -1,0 +1,18 @@
+/**
+ * @param {number} numRows
+ * @return {number[][]}
+ */
+var generate = function(numRows) {
+    const resultArr = [[1]]
+    
+    for(let i=1; i<numRows; i++){
+        
+        const result = [...resultArr[i-1],1]
+        
+        for(let j=1; j<result.length-1; j++){
+            result[j] += [...resultArr[i-1],1][j-1]
+        }
+        resultArr[i]=(result)
+    }
+    return resultArr
+};
