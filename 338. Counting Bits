@@ -1,0 +1,65 @@
+/**
+ * @param {number} n
+ * @return {number[]}
+ */
+var countBits = function(n) {
+    const result = [0];
+    let offset = 1; 
+
+    for(let i=1; i<=n; i++){
+        if(i === offset*2) offset = i
+        result[i] = result[i-offset]+1
+    }
+
+    return result;
+};
+
+/**
+ * @param {number} n
+ * @return {number[]}
+ */
+ const a = Math.log2(9)
+const isInt = Number.isInteger(a)
+if(isInt){
+  for(let i=0; i<a-1; i++){
+    cache[x+i] = cache[2**(a-1)+i]
+  }
+}
+
+var countBits = function(n) {
+    //dp 풀이
+    const helper = (x, arr,cache)=>{
+        let result;
+        let binary;
+    if(x>n){
+        return arr;
+    }
+    const powerOf2 = Math.log2(x)
+    const isInt = Number.isInteger(powerOf2)
+
+    if(isInt){
+        if(x ===1 || x===2) cache[x] = 1;
+        const num= 2**(powerOf2-1)
+        for(let i=1; i<num; i++){
+            cache[x] = 1
+            cache[x+i] = cache[num+i]
+        }
+    }else {
+        binary =  x.toString(2)
+        result = binary.split("").reduce((acc,val)=>{
+        acc = acc + Number(val);
+        return acc
+        },0)
+        cache[x] = result;
+    }
+    
+    if(cache[x]){
+        result = cache[x]
+    }
+
+    arr[x] = result
+    return helper(x+1,arr,cache)
+  }
+    const result = helper(0,[],{})
+    return result;
+};
