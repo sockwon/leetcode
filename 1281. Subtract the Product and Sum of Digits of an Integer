@@ -1,0 +1,14 @@
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var subtractProductAndSum = function(n) {
+    const arr = String(n).split("")
+    const product = arr.reduce((acc, val)=>{
+        return acc*val
+    },1)
+    const sum = arr.reduce((acc,val)=>{
+        return acc + Number(val)
+    },0)
+    return product-sum
+};
