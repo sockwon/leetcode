@@ -1,0 +1,16 @@
+/**
+ * @param {number} n - a positive integer
+ * @return {number}
+ */
+var hammingWeight = function(n) {
+    const binary = n.toString(2)
+    const result = binary.split("").reduce((acc,val)=>{
+      if(val === "1"){
+         return acc = acc + 1
+      }
+      return acc;
+    },0)
+    return result
+    
+    
+};
