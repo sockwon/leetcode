@@ -1,0 +1,14 @@
+/**
+ * @param {number[]} arr
+ * @return {boolean}
+ */
+var canMakeArithmeticProgression = function(arr) {
+    if(arr.length <3) return true;
+    const sortedArr = arr.sort((a,b)=>a-b);
+    for(let i=2; i<sortedArr.length; i++){
+        const first = sortedArr[i-1] - sortedArr[i-2]
+        const second = sortedArr[i] -sortedArr[i-1]
+        if(first !== second) return false
+    }
+    return true;
+};
