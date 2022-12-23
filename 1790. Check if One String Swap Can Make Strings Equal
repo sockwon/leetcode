@@ -1,0 +1,28 @@
+/**
+ * @param {string} s1
+ * @param {string} s2
+ * @return {boolean}
+ */
+var areAlmostEqual = function(s1, s2) {
+    //2글자만 다르다
+    //다른 2글자가 동일해야 한다.
+    if(s1===s2) return true
+    let result = false;
+    let s2Letters=[]
+    let s1Letters=""
+
+    for(let i=0; i<s1.length; i++){
+        
+        if(s1[i] !== s2[i]){
+            s2Letters.push(s2[i]);
+            s1Letters = s1Letters + s1[i];
+        }
+
+        if(s2Letters.length >=3) return false;
+
+        if(i === s1.length-1){
+            result = s2Letters.reverse().join("")===s1Letters ? true:false
+        }
+    } 
+    return result;
+};
