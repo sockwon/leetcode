@@ -1,0 +1,39 @@
+/**
+ * // Definition for a Node.
+ * function Node(val, children) {
+ *    this.val = val;
+ *    this.children = children;
+ * };
+ */
+
+/**
+ * @param {Node|null} root
+ * @return {number[]}
+ */
+var preorder = function(root) {
+    
+    //root value 를 배열의 첫번째. 첫번째는 root 사용자가 특별히 처리 나머지는 재귀
+    //node 읽음
+    //val push result
+    //chilren length > 0 만약 0이면 재귀 종료
+    //재귀 chilren node 차례로 읽음
+    //만약 root 가 빈 배열이면 어떻게 해야할까?
+    if(root && root.length === 0) {return []}
+    
+    const result = []
+    if(root) result.push(root.val)
+    
+    
+    const helper = (node)=>{
+       const len = node?.children.length
+       
+       if (len === 0 ) return;
+       for(let i=0; i<len; i++){
+           const newNode = node.children[i]
+           result.push(newNode.val)
+           helper(newNode)
+       }
+    }
+    helper(root)
+    return result
+};
