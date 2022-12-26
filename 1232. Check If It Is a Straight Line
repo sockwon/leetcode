@@ -1,0 +1,24 @@
+/**
+ * @param {number[][]} coordinates
+ * @return {boolean}
+ */
+var checkStraightLine = function(coordinates) {
+    //기울기가 모두 동일하다
+    //첫째와 둘째 항의 기울기를 구한 후 나머지 항의 기울기가 동일한지 검증한다
+    //문제는 완전탐색을 요구한다
+    const len = coordinates.length-1;
+    let result;
+    const helper=(index, coordinates, prev)=>{
+        if(index <=0) {result = true; return;};
+        const x = coordinates[index][0]-coordinates[index-1][0]
+        const y = coordinates[index][1]-coordinates[index-1][1]
+        const inclination = y/x === -Infinity ? Infinity : y/x;
+        console.log(index, inclination)
+        if(prev !== 'start' && inclination !== prev){result = false; return;};
+        
+        helper(index-1, coordinates, inclination)
+    }
+    helper(len, coordinates, 'start')
+    return result;
+    
+};
