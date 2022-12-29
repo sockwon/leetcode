@@ -1,0 +1,13 @@
+/**
+ * @param {number[][]} mat
+ * @return {number}
+ */
+var diagonalSum = function(mat) {
+    const len = mat.length-1
+    let clash = 0
+    if(mat.length%2 === 1) clash = mat[len/2][len/2]
+    let sum = mat.reduce((acc,val,inx)=>{
+        return acc = acc+val[inx]+ val[len-inx]
+    },0)
+    return sum-clash
+};
