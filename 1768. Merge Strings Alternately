@@ -1,0 +1,24 @@
+/**
+ * @param {string} word1
+ * @param {string} word2
+ * @return {string}
+ */
+var mergeAlternately = function(word1, word2) {
+    let result = [];
+    const firstWord = word1.split("")
+    const secondWord = word2.split("")
+    let len  = word1.length+word2.length
+    for(let i=0; i<len; i++){
+        if(i%2 === 0){
+            result.push(firstWord.shift())
+        }else{
+            result.push(secondWord.shift())
+        }
+        if(firstWord.length === 0 || secondWord.length === 0){
+            result = result.concat(firstWord)
+            result = result.concat(secondWord)
+            break;
+        }
+    }
+    return result.join("")
+};
