@@ -10,34 +10,17 @@
  * @return {ListNode}
  */
 var middleNode = function(head) {
-    //길이를 먼저센다.
-    //가운데 인덱스를 찾는다
-    //찾은 인덱스에서 시작해 끝까지 리턴한다.
-    
-    //길이를 먼저센다.
-    let count = 0;
-    const helper = function(node){
-        count += 1
-        if(node.next === null) return;
-        helper(node.next)
-    }
-    helper(head)
-    
-    if(count === 1) return head;
-    
-    //가운데 인덱스를 찾는다
-    let middleIndex = count%2===0? count/2+1 :Math.ceil(count/2);
-    //찾은 인덱스에서 시작해 끝까지 리턴한다.
+    let slow=head, fast=head;
     let result;
-    const resultFn = function(node, inx){
-        if(inx===2) {
-            result = node.next; 
+    const helper = function(slow, fast){
+        if(slow.next === null || fast === null || fast.next===null){
+            result = slow
             return;
-        }else{
-            resultFn(node.next, inx -=1)
-        }
+        };
+        slow = slow.next
+        fast = fast.next.next
+        helper(slow, fast)
     }
-    resultFn(head, middleIndex)
-    
+    helper(slow, fast)
     return result;
 };
